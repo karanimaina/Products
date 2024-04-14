@@ -1,4 +1,4 @@
-package com.example.product;
+package com.example.product.commons;
 
 import jakarta.persistence.*;
 import lombok.Getter;

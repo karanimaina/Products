@@ -1,5 +1,6 @@
-package com.example.product;
+package com.example.product.product.models;
 
+import com.example.product.commons.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
