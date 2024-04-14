@@ -1,6 +1,7 @@
 package com.example.product.product.models;
 
 import com.example.product.commons.BaseEntity;
+import com.example.product.manufacture.models.Manufacturer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
