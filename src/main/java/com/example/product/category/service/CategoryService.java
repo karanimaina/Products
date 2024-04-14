@@ -5,7 +5,7 @@ import com.example.product.commons.UniversalResponse;
 import com.example.product.product.records.CustomPage;
 import java.util.function.Function;
 
-public interface CategoryInterface {
+public interface CategoryService {
 	Function<CategoryRecord, UniversalResponse> createCategory();
 	Function<Long, UniversalResponse>deleteCategory();
 	Function<CustomPage,UniversalResponse> viewAlCategory ();
