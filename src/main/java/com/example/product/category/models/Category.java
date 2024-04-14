@@ -1,4 +1,4 @@
-package com.example.product.product.models;
+package com.example.product.category.models;
 
 import com.example.product.commons.BaseEntity;
 import jakarta.persistence.Column;

@@ -1,13 +1,11 @@
 package com.example.product.product.models;
 
 import com.example.product.commons.BaseEntity;
-import com.example.product.product.models.Manufacturer;
-import com.example.product.product.models.Product;
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 

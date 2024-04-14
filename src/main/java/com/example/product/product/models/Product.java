@@ -1,5 +1,6 @@
 package com.example.product.product.models;
 
+import com.example.product.category.models.Category;
 import com.example.product.commons.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

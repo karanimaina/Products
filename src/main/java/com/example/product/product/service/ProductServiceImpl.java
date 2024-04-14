@@ -1,7 +1,7 @@
 package com.example.product.product.service;
 
-import com.example.product.product.models.Category;
-import com.example.product.category.CategoryRepository;
+import com.example.product.category.models.Category;
+import com.example.product.category.repository.CategoryRepository;
 import com.example.product.commons.UniversalResponse;
 import com.example.product.product.exceptions.ProductException;
 import com.example.product.product.models.Product;
