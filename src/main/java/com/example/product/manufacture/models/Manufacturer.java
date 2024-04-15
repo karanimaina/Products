@@ -4,10 +4,7 @@ import com.example.product.commons.BaseEntity;
 import com.example.product.product.models.PriceHistory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Manufacturer  extends BaseEntity {
 private String name;
 private String location;
