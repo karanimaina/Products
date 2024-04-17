@@ -1,11 +1,15 @@
 package com.example.product.historicalpricing.service;
 
 import com.example.product.commons.UniversalResponse;
+import com.example.product.historicalpricing.records.PricingData;
+import reactor.core.publisher.Mono;
 
+import java.util.Date;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public interface PricingService {
-	BiFunction<Long,Long, UniversalResponse> addPricing();
-	BiFunction<Long,Long, UniversalResponse>deletePricing();
+Mono<Function<PricingData, UniversalResponse>> addPricing ();
+
+Mono<BiFunction<PricingData, Date, UniversalResponse>> deletePricing ();
 }

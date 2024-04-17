@@ -4,10 +4,7 @@ import com.example.product.commons.BaseEntity;
 import com.example.product.manufacture.models.Manufacturer;
 import com.example.product.product.models.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -16,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class PriceHistory extends BaseEntity {
 
 	
