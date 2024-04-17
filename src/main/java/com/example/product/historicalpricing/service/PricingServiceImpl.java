@@ -9,18 +9,18 @@ import com.example.product.manufacture.models.Manufacturer;
 import com.example.product.manufacture.repositories.ManufacturerRepository;
 import com.example.product.product.models.Product;
 import com.example.product.product.repository.ProductRepository;
-import com.fasterxml.jackson.databind.deser.impl.ObjectIdReferenceProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
-import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 @RequiredArgsConstructor
 public class PricingServiceImpl  implements PricingService{
@@ -76,5 +76,27 @@ public Mono<BiFunction<PricingData, Date ,UniversalResponse>>deletePricing () {
 				       .message ("pricing details deleted successfully")
 				       .build ();
 	});
+}
+
+@Override
+public Mono<Function<Long,UniversalResponse>> retrievePriceHistoryForAProduct () {
+	return Mono.fromCallable (()-> productId  ->{
+			Optional<Product> product = productRepository.findById (productId);
+			if (product.isPresent()){
+				Stream<PriceHistory> priceHistory = pricingRepository.findPriceHistoriesByProduct (product.get ());
+				return UniversalResponse.builder()
+						       .data (priceHistory.collect (Collectors.toList ()))
+						       .status (200)
+						       .message ("price history retrieved successfully")
+						       .build();
+				
+			}
+			return UniversalResponse.builder()
+					       .message ("product does not have a  price history")
+					       .status (200)
+					       .data (new ArrayList<> ())
+					       .build();
+	});
+	
 }
 }

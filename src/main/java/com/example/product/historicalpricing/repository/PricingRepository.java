@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface PricingRepository  extends JpaRepository<PriceHistory,Long> {
-	List<PriceHistory>findByManufacturerAndProduct(Manufacturer manufacturer, Product product);
-
+    Stream<PriceHistory>findPriceHistoriesByProduct(Product product);
     boolean existsByManufacturerAndProduct (Manufacturer manufacturer, Product product);
 	PriceHistory findByManufacturerAndProductAndAndChangeDate(Manufacturer manufacturer, Product produc, Date date);
 }

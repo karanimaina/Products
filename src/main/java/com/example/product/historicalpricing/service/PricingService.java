@@ -7,9 +7,10 @@ import reactor.core.publisher.Mono;
 import java.util.Date;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public interface PricingService {
 Mono<Function<PricingData, UniversalResponse>> addPricing ();
-
 Mono<BiFunction<PricingData, Date, UniversalResponse>> deletePricing ();
+Mono<Function<Long,UniversalResponse>>retrievePriceHistoryForAProduct();
 }
