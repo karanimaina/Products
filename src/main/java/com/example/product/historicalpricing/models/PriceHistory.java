@@ -1,7 +1,8 @@
-package com.example.product.product.models;
+package com.example.product.historicalpricing.models;
 
 import com.example.product.commons.BaseEntity;
 import com.example.product.manufacture.models.Manufacturer;
+import com.example.product.product.models.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

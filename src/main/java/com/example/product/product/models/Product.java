@@ -2,6 +2,7 @@ package com.example.product.product.models;
 
 import com.example.product.category.models.Category;
 import com.example.product.commons.BaseEntity;
+import com.example.product.historicalpricing.models.PriceHistory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
