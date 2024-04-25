@@ -90,7 +90,7 @@ public BiFunction<Long, Long, UniversalResponse> addProductsToCategory () {
 					        .data (retrieveProduct)
 					        .build ();
 		}
-		throw  new ProductException ("product / category mpt fpund");
+		throw  new ProductException ("product / category not found");
 	};
 
 }

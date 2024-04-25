@@ -32,6 +32,10 @@ ResponseEntity<UniversalResponse>deleteCategory(@RequestParam("id") Long id){
 ResponseEntity<UniversalResponse>viewCategory(@RequestBody CustomPage customPage){
 	return ResponseEntity.ok (categoryService.viewAllCategory ().apply (customPage));
 }
+@PostMapping("/addToCategory")
+ResponseEntity<UniversalResponse>viewCategory(@RequestParam("productId")Long productId, @RequestParam("categoryId") Long categoryId){
+	return ResponseEntity.ok (categoryService.addProductsToCategory ().apply (productId, categoryId));
+}
  }
 
 
