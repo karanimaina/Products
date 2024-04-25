@@ -3,9 +3,7 @@ package com.example.product.product.models;
 import com.example.product.category.models.Category;
 import com.example.product.commons.BaseEntity;
 import com.example.product.historicalpricing.models.PriceHistory;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -20,7 +18,8 @@ public class Product extends BaseEntity {
 private String name;
 private String company;
 private String description;
-@OneToOne
+@ManyToOne
+@JoinColumn(name = "category")
 private Category category;
 @OneToMany (mappedBy = "product")
 private List<PriceHistory> priceHistories;

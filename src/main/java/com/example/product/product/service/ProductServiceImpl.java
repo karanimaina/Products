@@ -1,7 +1,9 @@
 package com.example.product.product.service;
 
 import com.example.product.category.models.Category;
+import com.example.product.category.records.CategoryRecord;
 import com.example.product.category.repository.CategoryRepository;
+import com.example.product.category.service.CategoryService;
 import com.example.product.commons.UniversalResponse;
 import com.example.product.product.exceptions.ProductException;
 import com.example.product.product.models.Product;
@@ -23,17 +25,20 @@ import java.util.function.Function;
 @Service
 public class ProductServiceImpl implements ProductService {
 private  final ProductRepository productRepository;
-private  final  CategoryRepository categoryRepository;
+private  final CategoryService categoryService;
 @Override
 public Function<ProductInfo, UniversalResponse> createProduct () {
 	return  product -> {
 		Optional<Product> retrievedProduct = productRepository.findByNameIgnoreCaseAndCompany (product.name (),product.company ());
 		if (retrievedProduct.isPresent()) {
-			throw  new ProductException ("product already wxist");
+			throw  new ProductException ("product already exist");
 		}
-		Category category = new Category();
-		category.setName (product.category ());
-		categoryRepository.save (category);
+	  //view category
+		CategoryRecord categoryRecord = CategoryRecord
+				                                .builder ()
+				                                .name (product.name ()).build ();
+		UniversalResponse universalResponse= categoryService.createCategory ().apply (categoryRecord);
+		Category category = (Category) universalResponse.data ();
 		Product createProduct =Product.builder ()
 				.company (product.company ())
 				.description (product.description ())

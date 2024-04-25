@@ -11,8 +11,6 @@ import com.example.product.product.models.Product;
 import com.example.product.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -28,41 +26,36 @@ private final PricingRepository pricingRepository;
 private  final ManufacturerRepository manufacturerRepository;
 private  final ProductRepository productRepository;
 @Override
-public Mono<Function<PricingData, UniversalResponse>> addPricing () {
-	return Mono.fromCallable (()->
-	 pricingData -> {
-		Optional<Manufacturer>manufacturer = manufacturerRepository.findById (pricingData.manufacturerId ());
-		Optional<Product>product = productRepository.findById (pricingData.productId ());
-		if (product.isPresent() && manufacturer.isPresent ()) {
-			boolean existsInPriceHistory = pricingRepository.existsByManufacturerAndProduct(manufacturer.get(), product.get());
-			if (existsInPriceHistory){
-				throw new RuntimeException ("manufacturer with the given product already exists");
-			}
-			PriceHistory priceHistory= PriceHistory.builder ()
-					                           .product (product.get ())
-					                           .manufacturer (manufacturer.get ())
-					                           .price (pricingData.price())
-					                           .changeDate (pricingData.changeDate())
-					                           .build ();
-			pricingRepository.save (priceHistory);
-			return UniversalResponse
-					       .builder ()
-					       .data (priceHistory)
-					       .message ("pricing history added successfully")
-					       .status (200)
-					       .build ();
-			
-			
-			
-			
-		}
-		throw  new PriceException ("THe price history already exists");
-	});
+public Function<PricingData, UniversalResponse> addPricing () {
+	 return pricingData -> {
+		 Optional<Manufacturer> manufacturer = manufacturerRepository.findById (pricingData.manufacturerId ());
+		 Optional<Product> product = productRepository.findById (pricingData.productId ());
+		 if (product.isPresent () && manufacturer.isPresent ()) {
+			 boolean existsInPriceHistory = pricingRepository.existsByManufacturerAndProduct (manufacturer.get (), product.get ());
+			 if (existsInPriceHistory) {
+				 throw new RuntimeException ("manufacturer with the given product already exists");
+			 }
+			 PriceHistory priceHistory = PriceHistory.builder ()
+					                             .product (product.get ())
+					                             .manufacturer (manufacturer.get ())
+					                             .price (pricingData.price ())
+					                             .changeDate (pricingData.changeDate ())
+					                             .build ();
+			 pricingRepository.save (priceHistory);
+			 return UniversalResponse
+					        .builder ()
+					        .data (priceHistory)
+					        .message ("pricing history added successfully")
+					        .status (200)
+					        .build ();
+		 }
+		 throw new PriceException ("THe price history already exists");
+	 };
 }
 
 @Override
-public Mono<BiFunction<PricingData, Date ,UniversalResponse>>deletePricing () {
-	return Mono.fromCallable (()-> (pricingData, date) -> {
+public BiFunction<PricingData, Date ,UniversalResponse>deletePricing () {
+	return  (pricingData, date) -> {
 			Optional<Manufacturer>manufacturer = manufacturerRepository.findById (pricingData.manufacturerId ());
 			Optional<Product>product = productRepository.findById (pricingData.productId ());
 			if (product.isEmpty () && manufacturer.isEmpty ()) {
@@ -75,12 +68,12 @@ public Mono<BiFunction<PricingData, Date ,UniversalResponse>>deletePricing () {
 				       .status (200)
 				       .message ("pricing details deleted successfully")
 				       .build ();
-	});
+	};
 }
 
 @Override
-public Mono<Function<Long,UniversalResponse>> retrievePriceHistoryForAProduct () {
-	return Mono.fromCallable (()-> productId  ->{
+public Function<Long,UniversalResponse> retrievePriceHistoryForAProduct () {
+	return  productId  ->{
 			Optional<Product> product = productRepository.findById (productId);
 			if (product.isPresent()){
 				Stream<PriceHistory> priceHistory = pricingRepository.findPriceHistoriesByProduct (product.get ());
@@ -96,7 +89,7 @@ public Mono<Function<Long,UniversalResponse>> retrievePriceHistoryForAProduct ()
 					       .status (200)
 					       .data (new ArrayList<> ())
 					       .build();
-	});
+	};
 	
 }
 }

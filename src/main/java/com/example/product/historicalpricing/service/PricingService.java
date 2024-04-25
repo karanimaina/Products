@@ -10,7 +10,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public interface PricingService {
-Mono<Function<PricingData, UniversalResponse>> addPricing ();
-Mono<BiFunction<PricingData, Date, UniversalResponse>> deletePricing ();
-Mono<Function<Long,UniversalResponse>>retrievePriceHistoryForAProduct();
+Function<PricingData, UniversalResponse> addPricing ();
+BiFunction<PricingData, Date, UniversalResponse> deletePricing ();
+Function<Long,UniversalResponse>retrievePriceHistoryForAProduct();
 }
