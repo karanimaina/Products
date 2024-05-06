@@ -12,6 +12,6 @@ public interface ProductService {
 	Function<ProductId, UniversalResponse>updateProduct();
 	Function<Long, UniversalResponse>deleteProduct();
      Function<CustomPage,UniversalResponse> viewProducts ();
-	Function<Long, UniversalResponse>fetchById();
+	Function<String, Long>fetchById();
 	
 }

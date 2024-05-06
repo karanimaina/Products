@@ -1,13 +1,10 @@
 package com.example.product.manufacture.service;
 
-import com.example.product.category.models.Category;
 import com.example.product.commons.UniversalResponse;
-import com.example.product.manufacture.ManufacturerException;
+import com.example.product.manufacture.exceptions.ManufacturerException;
 import com.example.product.manufacture.models.Manufacturer;
 import com.example.product.manufacture.record.ManufacturerInfo;
 import com.example.product.manufacture.repositories.ManufacturerRepository;
-import com.example.product.product.exceptions.ProductException;
-import com.example.product.product.models.Product;
 import com.example.product.product.records.CustomPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

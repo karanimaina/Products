@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ProductRepository  extends JpaRepository<Product,Long> {
 
 Optional<Product> findByNameIgnoreCaseAndCompany(String name, String company);
+Optional<Product> findByNameIgnoreCase(String name);
 }

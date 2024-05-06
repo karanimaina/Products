@@ -38,6 +38,7 @@ public Function<ProductInfo, UniversalResponse> createProduct () {
 				                                .builder ()
 				                                .name (product.name ()).build ();
 		UniversalResponse universalResponse= categoryService.createCategory ().apply (categoryRecord);
+		log.info ("" +universalResponse.data ());
 		Category category = (Category) universalResponse.data ();
 		Product createProduct =Product.builder ()
 				.company (product.company ())
@@ -105,17 +106,13 @@ public Function<CustomPage,UniversalResponse> viewProducts () {
 }
 
 @Override
-public Function<Long, UniversalResponse> fetchById () {
-	return longId ->{
-		Optional<Product> product = productRepository.findById (longId);
+public Function<String, Long> fetchById () {
+	return productName ->{
+		Optional<Product> product = productRepository.findByNameIgnoreCase(productName);
 		if (product.isEmpty ()) {
 			throw  new ProductException ("Product not found");
 		}
-		return UniversalResponse.builder ()
-				       .data (product.get ())
-				       .status (200)
-				       .message ("product retrieved successfully")
-				       .build ();
+		return  product.get ().getId ();
 	};
 }
 }
