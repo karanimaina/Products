@@ -7,5 +7,8 @@ import reactor.core.publisher.Mono;
 public interface InventoryService {
     //update productQuantity if product is present
     Mono<UniversalResponse>addProductInventory(Inventory inventory);
+    Mono<UniversalResponse>sellProduct(String stockCode);
+
+
 
 }

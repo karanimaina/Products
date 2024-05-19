@@ -1,5 +1,8 @@
 package com.example.product.inventory.records;
 
-public record Inventory(Long productId, Integer  quantity) {
+import java.util.Date;
+
+public record Inventory(Long productId, Integer  quantity, Date expiryDate,String weight,String barcode, String amount) {
+
 
 }
