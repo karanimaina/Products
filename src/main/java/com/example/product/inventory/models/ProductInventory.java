@@ -21,4 +21,9 @@ public class ProductInventory extends BaseEntity {
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Batch> batches;
     private Integer totalQuantity;
+    public void updateTotalQuantity() {
+        this.totalQuantity = batches.stream()
+                .mapToInt(Batch::getQuantity)
+                .sum();
+    }
 }

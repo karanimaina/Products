@@ -23,5 +23,6 @@ public class Batch extends BaseEntity {
     private String weight;
     private Integer quantity;
     private String stockCode;
-    private String amount;
+    private int buyingPrice;
+    private int sellingPrice;
 }
