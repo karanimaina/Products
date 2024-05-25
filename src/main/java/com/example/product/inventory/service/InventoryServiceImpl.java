@@ -105,8 +105,7 @@ public class InventoryServiceImpl implements  InventoryService {
      * 5. Decreases the quantity of the batch by the specified amount.
      * 6. Updates the total quantity of the product inventory based on the current batch quantities.
      * 7. Saves the updated batch and product inventory to their respective repositories.
-     * 8. Returns a UniversalResponse object containing the updated product inventory and a success message.
-     *
+     * 8. Returns a UniversalResponse object containing the updated product inventory and a success message
      * @param stockCode the stock code of the batch to be sold.
      * @param quantity the quantity of the product to be sold.
      * @return a Mono emitting a UniversalResponse object with the result of the operation.
